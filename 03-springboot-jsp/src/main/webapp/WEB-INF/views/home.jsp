@@ -26,5 +26,23 @@
 	<br/>
 	<button type="submit">送出</button>
 </form>
+
+<hr/>
+
+<form action="hobby" method="POST">
+    暱稱: <input type="text" name="nickname"/> <br>
+    手機: <input type="text" name="phone"/> <br>
+    興趣：<br>
+    <input type="checkbox" name="hobby" value="吃飯"/>吃飯
+    <input type="checkbox" name="hobby" value="睡覺"/>睡覺
+    <input type="checkbox" name="hobby" value="打東東"/>打東東
+    <br>
+    <input type="submit" />
+</form>
+
+<hr/>
+
+<a href="testModel">TestModel</a>
+
 </body>
 </html>

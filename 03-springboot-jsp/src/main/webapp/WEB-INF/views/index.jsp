@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>${user}登入成功</h1>
+
+<h1>首頁</h1>
 </body>
 </html>
