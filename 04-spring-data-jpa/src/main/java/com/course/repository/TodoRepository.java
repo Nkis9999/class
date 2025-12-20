@@ -1,5 +1,7 @@
 package com.course.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,4 +10,28 @@ import com.course.entity.TodoEntity;
 @Repository
 public interface TodoRepository extends JpaRepository<TodoEntity, Integer> {
 
+	List<TodoEntity> findByTitle(String title);
+	
+	List<TodoEntity> findByStatus(Integer status);
+	
+	List<TodoEntity> findByTitleAndStatus(String title, Integer status);
+	
+	// SQL語句：select * from todo where title like '%關鍵字%'
+	List<TodoEntity> findByTitleLike(String title);
+	
+	// SQL語句：select * from todo where title like '%關鍵字%'
+	List<TodoEntity> findByTitleContaining(String title);
+
+	// SQL語句：select * from todo where title like '關鍵字%'
+	List<TodoEntity> findByTitleStartingWith(String title);
+
+	// SQL語句：select * from todo where title like '%關鍵字'
+	List<TodoEntity> findByTitleEndingWith(String title);
+	
+	// SQL語句：select * from todo where id > ?
+	List<TodoEntity> findByIdGreaterThan(Integer id);
+
+	// SQL語句：select * from todo where id <= ?
+	List<TodoEntity> findByIdLessThanEqual(Integer id);
+	
 }
