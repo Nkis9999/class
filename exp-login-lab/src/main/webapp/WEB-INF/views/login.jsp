@@ -16,6 +16,7 @@
 	<br/>
 	<input type="submit" value="登入" />
 </form>
+
 <a href="registerPage">註冊頁</a>
 </body>
 </html>
