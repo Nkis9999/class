@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>登入頁</h1>
+
 <form action="login" method="POST">
 	帳號：<input type="text" name="username" />
 	<br/>
@@ -15,5 +16,6 @@
 	<br/>
 	<input type="submit" value="登入" />
 </form>
+<a href="registerPage">註冊頁</a>
 </body>
 </html>

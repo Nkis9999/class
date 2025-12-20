@@ -2,6 +2,8 @@ package com.course.service;
 
 import org.springframework.stereotype.Service;
 
+import com.course.model.UserVo;
+
 // @Component
 @Service
 public class LoginService {
@@ -12,5 +14,14 @@ public class LoginService {
 		} else {
 			return false;
 		}
+	}
+	
+	public boolean registeUser(UserVo userVo) {
+		System.out.println("Service:" + userVo);
+		// 實際註冊行為
+		
+		// 註冊成功
+		return true;
+
 	}
 }
