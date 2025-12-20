@@ -41,7 +41,7 @@ public class LoginController {
 	public String register(@ModelAttribute UserVo userVo) {
 		System.out.println(userVo);
 		
-		boolean isRegister = loginService.registeUser(userVo);
+		boolean isRegister = loginService.registerUser(userVo);
 		if (isRegister) {
 			return "registerSuccess";
 		} else {
