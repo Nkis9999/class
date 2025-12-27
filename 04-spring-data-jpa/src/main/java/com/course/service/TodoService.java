@@ -4,11 +4,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.course.entity.TodoEntity;
+import com.course.model.TodoVo;
 import com.course.repository.TodoRepository;
 
 @Service
@@ -95,8 +97,32 @@ public class TodoService {
 		// return todoRepository.findByQuery2(status);
 		return todoRepository.findByQuery2("買菜", status);
 	}
+	
 	public List<TodoEntity> findByNativeQuery(Integer status) {
 		return todoRepository.findByNativeQuery(status);
 	}
 	
+	public void insertTodo(TodoVo todoVo) {
+		
+		TodoEntity entity =  new TodoEntity();
+		entity.setTitle(todoVo.getTitle());
+		entity.setDuedate(genQueryDate(todoVo.getDuedate(),false));
+		entity.setStatus(todoVo.getStatus());
+
+		// TodoEntity
+		todoRepository.save(entity);
+	}
+	
+	public void updateTodo(TodoVo todoVo) {
+		// 要更新哪一筆資料?
+		Integer id = todoVo.getId();
+		Optional<TodoEntity> op = todoRepository.findById(id);
+		if (op.isPresent()) {
+			TodoEntity entity = op.get();
+			entity.setTitle(todoVo.getTitle());
+			entity.setDuedate(genQueryDate(todoVo.getDuedate(),false));
+			entity.setStatus(todoVo.getStatus());
+			todoRepository.save(entity);
+		}
+	}
 }

@@ -24,6 +24,9 @@ public class TodoEntity {
 	private String title;
 	
 	private Date duedate;
+	
+//	@Column(name = "due_date")
+//	private Date dueDate;
 
 	private Integer status;
 	
