@@ -3,6 +3,7 @@ package com.course.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -82,5 +83,25 @@ public class TodoController {
 	@PostMapping("/todo/update")
 	public void updateTodo(@RequestBody TodoVo todoVo) {
 		todoService.updateTodo(todoVo);
+	}
+	
+	@DeleteMapping("/todo/{id}")
+	public void updateTodo(@PathVariable Integer id) {
+		todoService.deleteTodo(id);
+	}
+	
+	@PostMapping("/todo/title/{title}/id/{id}")
+	public void updateQueryTodo(@PathVariable String title, @PathVariable Integer id) {
+		todoService.updateQuery(title, id);
+	}
+	
+	@PostMapping("/todo/insert-by-query")
+	public void insertTodoQuery(@RequestBody TodoVo todoVo) {
+		todoService.insertTodoQuery(todoVo);
+	}
+	
+	@DeleteMapping("/todo/status/{status}")
+	public void deleteByStatus(@PathVariable Integer status) {
+		todoService.deleteByStatus(status);
 	}
 }

@@ -13,6 +13,8 @@ import com.course.entity.TodoEntity;
 import com.course.model.TodoVo;
 import com.course.repository.TodoRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class TodoService {
 
@@ -109,8 +111,11 @@ public class TodoService {
 		entity.setDuedate(genQueryDate(todoVo.getDuedate(),false));
 		entity.setStatus(todoVo.getStatus());
 
+		System.out.println("======  Before  ========" + entity.getId());
+		
 		// TodoEntity
-		todoRepository.save(entity);
+		entity = todoRepository.save(entity);
+		System.out.println(entity.getId());
 	}
 	
 	public void updateTodo(TodoVo todoVo) {
@@ -124,5 +129,25 @@ public class TodoService {
 			entity.setStatus(todoVo.getStatus());
 			todoRepository.save(entity);
 		}
+	}
+	
+	public void deleteTodo(Integer id) {
+		todoRepository.deleteById(id);
+	}
+	
+	public void updateQuery(String title, Integer id) {
+		todoRepository.updateByQuery(title, id);
+	}
+	
+	public void insertTodoQuery(TodoVo todoVo) {
+
+		// TodoEntity
+		todoRepository.insertByQuery(todoVo.getTitle(), genQueryDate(todoVo.getDuedate(),false), todoVo.getStatus());
+	}
+	
+	@Transactional
+	public void deleteByStatus(Integer id) {
+		// todoRepository.deleteAll();
+		todoRepository.deleteByStatus(id);
 	}
 }
