@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.course.entity.TodoEntity;
@@ -35,5 +36,21 @@ public interface TodoRepository extends JpaRepository<TodoEntity, Integer> {
 	// SQL語句：select * from todo where id <= ?
 	List<TodoEntity> findByIdLessThanEqual(Integer id);
 	
-	List<TodoEntity> findByDuedateBetween(Date startDate , Date endDate);
+	List<TodoEntity> findByDuedateBetween(Date startDate, Date endDate);
+	
+	List<TodoEntity> findByIdAndTitleOrDuedateAndStatus(Integer id, String title, Date duedate, Integer status);
+	
+	// SQL語句：select * from todo order by duedate;
+	List<TodoEntity> findAllByOrderByDuedate();
+	
+	// SQL語句：select * from todo where title like ? order by due_date desc;
+	List<TodoEntity> findByTitleStartingWithOrderByDuedate(String title);
+	
+	// SQL語句：select * from todo where title like ? order by due_date desc;
+	List<TodoEntity> findByTitleStartingWithOrderByDuedateDesc(String title);
+	
+	// select * from todo where status = 1;
+	// JPQL
+	@Query("SELECT T FROM TodoEntity T WHERE T.status = ?1")
+	List<TodoEntity> findByQuery(Integer status);
 }
