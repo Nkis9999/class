@@ -61,9 +61,9 @@ public class TodoService {
 		Date startDate = genQueryDate(startDateStr, false);
 		
 		Date endDate = genQueryDate(endDateStr, true);
-		
+
 		return todoRepository.findByDuedateBetween(startDate, endDate);
-	} 
+	}
 	
 	public List<TodoEntity> findByTitleStartingWithOrderByDuedateDesc(String title) {
 		return todoRepository.findByTitleStartingWithOrderByDuedate(title);
@@ -91,6 +91,12 @@ public class TodoService {
 	 * @return
 	 */
 	public List<TodoEntity> findByQuery(Integer status) {
-		return todoRepository.findByQuery(status);
+		// return todoRepository.findByQuery(status);
+		// return todoRepository.findByQuery2(status);
+		return todoRepository.findByQuery2("買菜", status);
 	}
+	public List<TodoEntity> findByNativeQuery(Integer status) {
+		return todoRepository.findByNativeQuery(status);
+	}
+	
 }

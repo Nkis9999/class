@@ -64,4 +64,10 @@ public class TodoController {
 		List<TodoEntity> todos = todoService.findByQuery(status);
 		return todos;
 	}
+	
+	@GetMapping("/todo/native-query/status/{status}")
+	public List<TodoEntity> findByNativeQuery(@PathVariable Integer status) {
+		List<TodoEntity> todos = todoService.findByNativeQuery(status);
+		return todos;
+	}
 }
