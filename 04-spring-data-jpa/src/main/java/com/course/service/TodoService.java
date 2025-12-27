@@ -1,5 +1,8 @@
 package com.course.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +54,29 @@ public class TodoService {
 	
 	public List<TodoEntity> getTodoByIdPeriod(Integer id) {
 		return todoRepository.findByIdGreaterThan(id);
+	}
+	
+	public List<TodoEntity> findByDuedateBetween(String startDateStr, String endDateStr) {
+		
+		Date startDate = genQueryDate(startDateStr, false);
+		
+		Date endDate = genQueryDate(endDateStr, true);
+		
+		return todoRepository.findByDuedateBetween(startDate, endDate);
+	}
+	
+	private Date genQueryDate(String dateStr, boolean isEndDate) {
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    Date date = null;
+	    try {
+	        if (isEndDate) {
+	            date = dateFormat.parse(dateStr + " 23:59:59");
+	        } else {
+	            date = dateFormat.parse(dateStr + " 00:00:00");				
+	        }
+	    } catch (ParseException e) {
+	        e.printStackTrace();
+	    }
+	    return date;
 	}
 }

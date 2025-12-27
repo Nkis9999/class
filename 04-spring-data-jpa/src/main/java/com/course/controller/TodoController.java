@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.course.entity.TodoEntity;
@@ -43,6 +44,12 @@ public class TodoController {
 	@GetMapping("/todo/period/{id}")
 	public List<TodoEntity> getByIdPeriod(@PathVariable Integer id) {
 		List<TodoEntity> todos = todoService.getTodoByIdPeriod(id);
+		return todos;
+	}
+	
+	@GetMapping("/todo/duedate-between")
+	public List<TodoEntity> getByIdPeriod(@RequestParam String startDate, @RequestParam String endDate) {
+		List<TodoEntity> todos = todoService.findByDuedateBetween(startDate, endDate);
 		return todos;
 	}
 }
