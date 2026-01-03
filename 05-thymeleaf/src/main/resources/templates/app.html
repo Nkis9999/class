@@ -5,59 +5,67 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>App</h1>
+<h1>App</h1>
 
-	<h2 th:text="${title}">我是窮光蛋</h2>
+<h2 th:text="${title}">我是窮光蛋</h2>
 
-	<h2 th:utext="${title}">我是窮光蛋</h2>
+<h2 th:utext="${title}">我是窮光蛋</h2>
 
-	<h2 th:text="${title2}">我是窮光蛋</h2>
-	<!-- <h2 th:utext="${title2}">我是窮光蛋</h2> -->
-	<!-- <th:text></th:text> -->
+<h2 th:text="${title2}">我是窮光蛋</h2>
+<!-- <h2 th:utext="${title2}">我是窮光蛋</h2> -->
+<!-- <th:text></th:text> -->
 
-	<h2 th:if="${isLogin}" th:text="|${param1} ${param2} 親愛的用戶您好|">親愛的用戶您好：</h2>
+<h2 th:if="${isLogin}" th:text="|${param1} ${param2} 親愛的用戶您好|">親愛的用戶您好：</h2>
 
-	<h2 th:unless="${isLogin}">親愛的用戶您好：</h2>
+<h2 th:unless="${isLogin}">親愛的用戶您好：</h2>
 
-	<h2 th:text="${param1} + ' ' + ${param2}">我是窮光蛋</h2>
+<h2 th:text="${param1} + ' ' + ${param2}">我是窮光蛋</h2>
 
-	<h2 th:text="|${param1}    ${param2}|">我是窮光蛋</h2>
+<h2 th:text="|${param1}    ${param2}|">我是窮光蛋</h2>
 
-	<div th:switch="${username}">
-		<p th:case="'Kitty'">佛殺凱蒂貓</p>
-		<p th:case="'Snoopy'">史奴比</p>
-		<p th:case="*">其他</p>
-	</div>
+<div th:switch="${username}">
+    <p th:case="'Kitty'">佛殺凱蒂貓</p>
+    <p th:case="'Snoopy'">史奴比</p>
+    <p th:case="*">其他</p>
+</div>
 
-	<h2 th:text="${usernameDisp}">凱蒂貓</h2>
+<h2 th:text="${usernameDisp}">凱蒂貓</h2>
 
-	<table border="1">
-		<tr>
-			<td>ID</td>
-			<td>使用者名稱</td>
-			<td>密碼</td>
-			<td>E-mail</td>
-			<td>功能</td>
-		</tr>
-		<tr th:each="u1 : ${users}">
-			<td th:text="${u1.id}">XXXX</td>
-			<td th:text="${u1.username}">XXXX</td>
-			<td th:text="${u1.password}">XXXX</td>
-			<td th:text="${u1.email}">XXXX</td>
-			<td><a th:href="@{/user/id (id=${u1.id})}">編輯</a></td>
-		</tr>
+<table border="1">
+	<tr>
+		<td>ID</td>
+		<td>使用者名稱</td>
+		<td>密碼</td>
+		<td>E-mail</td>
+		<td>功能</td>
+	</tr>
+	<tr th:each="u1 : ${users}">
+		<td th:text="${u1.id}">XXXX</td>
+		<td th:text="${u1.username}">XXXX</td>
+		<td th:text="${u1.password}">XXXX</td>
+		<td th:text="${u1.email}">XXXX</td>
+		<td><a th:href="@{/user/{idx} (idx=${u1.id})}">編輯</a></td>
+	</tr>
 
-	</table>
+</table>
 
-	<hr>
-	<a href="/book">傳統連結，根目錄</a>
-	<br />
-	<a href="book">傳統連結，相對目錄</a>
+<hr>
 
-	<hr>
-	<a th:href="@{/book}">連結</a>
+<a href="/book">傳統連結，根目錄</a><br/>
+<a href="book">傳統連結，相對目錄</a>
+<hr>
+<a th:href="@{/book}">連結</a>
 
-	<a th:href="@{/book/99}">連結99</a>
+<a th:href="@{/book/{id} (id=99)}">連結99</a>
+
+<a th:href="@{/books(page=0, keyword='關鍵字')}">上一頁</a>
+
+<hr>
+<div th:replace="~{layout/common :: footer}"></div>
+
+<!-- <img alt="" src="/images/iPhone17.jpg"> -->
+<img alt="" th:src="@{/images/{imgName} (imgName=${imageName})}">
+
 
 </body>
 </html>
