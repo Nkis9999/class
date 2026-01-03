@@ -6,8 +6,11 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.course.model.BookVo;
 import com.course.model.UserVo;
 
 @Controller
@@ -57,7 +60,8 @@ public class AppController {
 	}
 	
 	@GetMapping("/book")
-	public String toBook() {
+	public String toBook(Model model) {
+		model.addAttribute("book", new BookVo());
 		return "book";
 	}
 	
@@ -71,6 +75,14 @@ public class AppController {
 	public String toBookRequestParam(Integer page, String keyword) {
 		System.out.println("page:" + page);
 		System.out.println("keyword:" + keyword);
+		return "book";
+	}
+	
+	@PostMapping("/addBook")
+	public String addBook(@ModelAttribute BookVo bookVo, Model model) {
+		System.out.println(bookVo);
+		bookVo.setAuthor(bookVo.getAuthor() + "!!!!!!");
+		model.addAttribute("book", bookVo);
 		return "book";
 	}
 	

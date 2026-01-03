@@ -7,6 +7,8 @@
 <body>
 <h1>App</h1>
 
+
+
 <h2 th:text="${title}">我是窮光蛋</h2>
 
 <h2 th:utext="${title}">我是窮光蛋</h2>
@@ -54,13 +56,14 @@
 <a href="/book">傳統連結，根目錄</a><br/>
 <a href="book">傳統連結，相對目錄</a>
 <hr>
-<a th:href="@{/book}">連結</a>
+<a th:href="@{/book}">書籍頁</a>
 
 <a th:href="@{/book/{id} (id=99)}">連結99</a>
 
 <a th:href="@{/books(page=0, keyword='關鍵字')}">上一頁</a>
 
 <hr>
+
 <div th:replace="~{layout/common :: footer}"></div>
 <div th:include="~{layout/common :: footer}"></div>
 
