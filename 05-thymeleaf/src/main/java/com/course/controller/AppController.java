@@ -69,7 +69,6 @@ public class AppController {
 		String t = """
 				
 				""";
-		
 
 		return t;
 	}
