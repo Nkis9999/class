@@ -84,7 +84,6 @@ public class AppController {
 	@PostMapping("/addBook")
 	public String addBook(@Valid @ModelAttribute("book") BookVo bookVo,BindingResult bindingResult , Model model) {
 		System.out.println(bookVo);
-//		bookVo.setAuthor(bookVo.getAuthor() + "!!!!!!");
 		model.addAttribute("book", bookVo);
 		if (bindingResult.hasErrors()) {
 			// 如果檢核失敗，會到原本畫面，提示錯誤訊息
