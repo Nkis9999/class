@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.course.model.BookVo;
 import com.course.model.UserVo;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class AppController {
@@ -79,10 +82,18 @@ public class AppController {
 	}
 	
 	@PostMapping("/addBook")
-	public String addBook(@ModelAttribute BookVo bookVo, Model model) {
+	public String addBook(@Valid @ModelAttribute("book") BookVo bookVo,BindingResult bindingResult , Model model) {
 		System.out.println(bookVo);
-		bookVo.setAuthor(bookVo.getAuthor() + "!!!!!!");
+//		bookVo.setAuthor(bookVo.getAuthor() + "!!!!!!");
 		model.addAttribute("book", bookVo);
+		if (bindingResult.hasErrors()) {
+			// 如果檢核失敗，會到原本畫面，提示錯誤訊息
+			return "book";
+		}
+		
+		// 如果檢核成功,才 Service 新增書籍
+		bookVo.setAuthor(bookVo.getAuthor() + "!!!!!!");
+		// 檢核欄位內容
 		return "book";
 	}
 	

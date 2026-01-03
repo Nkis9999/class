@@ -11,10 +11,14 @@
     <div>
         <label for="name">書籍名稱:</label>
         <input type="text" th:field="*{name}"/>
+        <div th:if="${#fields.hasErrors('name')}" 
+         th:errors="*{name}"></div>
     </div>
     <div>
         <label for="author">作者:</label>
         <input type="text" th:field="*{author}"/>
+        <div th:if="${#fields.hasErrors('author')}" 
+         th:errors="*{author}"></div>
     </div>
     <div>
         <label for="imgName">圖檔名稱:</label>
