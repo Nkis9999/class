@@ -6,14 +6,39 @@
 </head>
 <body>
 <h1>App</h1>
-<h2 th:text="${title}">預設標題</h2>
-<h3 th:text="|${param1}   ${param2}|"></h3>
-<table border=1>
+
+<h2 th:text="${title}">我是窮光蛋</h2>
+
+<h2 th:utext="${title}">我是窮光蛋</h2>
+
+<h2 th:text="${title2}">我是窮光蛋</h2>
+<!-- <h2 th:utext="${title2}">我是窮光蛋</h2> -->
+<!-- <th:text></th:text> -->
+
+<h2 th:if="${isLogin}" th:text="|${param1} ${param2} 親愛的用戶您好|">親愛的用戶您好：</h2>
+
+<h2 th:unless="${isLogin}">親愛的用戶您好：</h2>
+
+<h2 th:text="${param1} + ' ' + ${param2}">我是窮光蛋</h2>
+
+<h2 th:text="|${param1}    ${param2}|">我是窮光蛋</h2>
+
+
+
+<table border="1">
 	<tr>
+		<td>ID</td>
 		<td>使用者名稱</td>
 		<td>密碼</td>
+		<td>E-mail</td>
 	</tr>
+	<tr th:each="u1 : ${users}">
+		<td th:text="${u1.id}">XXXX</td>
+		<td th:text="${u1.username}">XXXX</td>
+		<td th:text="${u1.password}">XXXX</td>
+		<td th:text="${u1.email}">XXXX</td>
+	</tr>
+
 </table>
-<!-- <h2 th:utext="${title}">預設標題</h2> -->
 </body>
 </html>

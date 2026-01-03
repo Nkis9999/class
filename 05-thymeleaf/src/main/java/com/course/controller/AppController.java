@@ -31,6 +31,8 @@ public class AppController {
 		model.addAttribute("param2", "福利蓮");
 		
 		model.addAttribute("users", userList);
+		
+		model.addAttribute("isLogin", true);
 		return "app";
 	}
 	
@@ -39,6 +41,7 @@ public class AppController {
 				
 				""";
 		
+
 		return t;
 	}
 }
