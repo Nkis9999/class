@@ -62,6 +62,7 @@
 
 <hr>
 <div th:replace="~{layout/common :: footer}"></div>
+<div th:include="~{layout/common :: footer}"></div>
 
 <!-- <img alt="" src="/images/iPhone17.jpg"> -->
 <img alt="" th:src="@{/images/{imgName} (imgName=${imageName})}">
