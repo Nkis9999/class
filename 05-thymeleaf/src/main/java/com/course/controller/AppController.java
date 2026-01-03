@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.course.model.UserVo;
 
@@ -33,7 +34,35 @@ public class AppController {
 		model.addAttribute("users", userList);
 		
 		model.addAttribute("isLogin", true);
+		
+		model.addAttribute("username", "Kitty");
+		
+		String name = "Kitty3";
+		String usernameDisp = "";
+		switch (name) {
+		case "Kitty":
+			usernameDisp = "佛殺凱蒂貓";
+			break;
+		case "Snoopy":
+			usernameDisp = "史奴比";
+			break;
+		default:
+			usernameDisp = "其他";
+		}
+		
+		model.addAttribute("usernameDisp", usernameDisp);
 		return "app";
+	}
+	
+	@GetMapping("/book")
+	public String toBook() {
+		return "book";
+	}
+	
+	@GetMapping("/book/{id}")
+	public String toBookPathVariable(@PathVariable Integer id) {
+		System.out.println("ID:" + id);
+		return "book";
 	}
 	
 	public String test() {

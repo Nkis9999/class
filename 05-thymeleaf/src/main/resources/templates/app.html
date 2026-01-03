@@ -23,7 +23,13 @@
 
 <h2 th:text="|${param1}    ${param2}|">我是窮光蛋</h2>
 
+<div th:switch="${username}">
+    <p th:case="'Kitty'">佛殺凱蒂貓</p>
+    <p th:case="'Snoopy'">史奴比</p>
+    <p th:case="*">其他</p>
+</div>
 
+<h2 th:text="${usernameDisp}">凱蒂貓</h2>
 
 <table border="1">
 	<tr>
@@ -40,5 +46,12 @@
 	</tr>
 
 </table>
+
+<hr>
+
+<a th:href="@{/book}">連結</a>
+
+<a th:href="@{/book/99}">連結99</a>
+
 </body>
 </html>
