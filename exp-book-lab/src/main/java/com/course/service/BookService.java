@@ -2,10 +2,12 @@ package com.course.service;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.course.entity.BookEntity;
@@ -98,4 +100,24 @@ public class BookService {
 		return books.stream().map(entity -> helper.convertToVo(entity)).collect(Collectors.toList());
 
 	}
+	
+	public Page<BookEntity> getAllBookPage(Integer pageNumber, Integer pageSize) {
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		Page<BookEntity> page = bookRepo.findAll(pageable);
+		return page;
+		// List<BookEntity> books = bookRepo.findAll();
+		// Entity -> Vo
+		
+		//return books.stream().map(entity -> helper.convertToVo(entity)).collect(Collectors.toList());
+	}
+	
+	public Page<BookVo> findBookListPaging(Integer page, Integer size, String keyword) {
+	    Pageable pageable = PageRequest.of(page, size);
+	    Page<BookEntity> bookPage = bookRepo.findByNameContaining(keyword, pageable);
+	    
+	    // Page.map() 用來轉換每一筆資料的型態，分頁資訊會自動保留，不需要自己重建 Page。
+	    // bookPage.map(entity -> helper.convertToVo(entity));
+	    return bookPage.map(helper::convertToVo);
+	}
+	
 }
