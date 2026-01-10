@@ -36,8 +36,9 @@ public class BookController {
 	public String deleteBook(@PathVariable("id") Long id, Model model) {
 		bookService.deleteBookById(id);
 		// 查詢 書籍列表
-		List<BookVo> books = bookService.getAllBook();
-		model.addAttribute("books", books);
-		return "bookcase";
+//		List<BookVo> books = bookService.getAllBook();
+//		model.addAttribute("books", books);
+//		return "bookcase";
+		return "redirect:/toBookcase";
 	}
 }
