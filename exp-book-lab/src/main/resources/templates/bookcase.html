@@ -7,27 +7,30 @@
 <body>
 <h1>我的書櫃</h1>
 
+<a th:href="@{/toAddBookPage}">新增書籍</a>
+
 <table border="1">
 	<thead>
-			<tr>
-				<td>書名</td>
-				<td>作者</td>
-				<td>功能</td>
-			</tr>
+		<tr>
+			<td>書名</td>
+			<td>作者</td>
+			<td>功能</td>
+		</tr>
 	</thead>
 	
 	<tbody>
-			<tr th:each="book : ${books}">
-				<td th:text="${book.name}">書名</td>
-				<td th:text="${book.author}">作者</td>
-				<td>
-					<a href="">編輯</a>
-					<a th:href="@{/delete/{id} (id=${book.id})}">刪除</a>
-				</td>
-			</tr>
+		<tr th:each=" book : ${books}">
+			<td th:text="${book.name}">書名</td>
+			<td th:text="${book.author}">作者</td>
+			<td>
+				<a href="">編輯</a>
+				<a th:href="@{/delete/{id} (id=${book.id})}">刪除</a>
+			</td>
+		</tr>
 	</tbody>
-	
+
 </table>
+
 
 
 </body>

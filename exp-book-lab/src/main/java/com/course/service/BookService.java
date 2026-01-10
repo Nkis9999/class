@@ -1,7 +1,8 @@
 package com.course.service;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,11 +20,14 @@ public class BookService {
 	@Autowired
 	private BookRepository bookRepo;
 	
+	@Autowired
+	private BookServiceHelper helper;
+	
 	public List<BookVo> getAllBook() {
 		List<BookEntity> books = bookRepo.findAll();
 		// Entity -> Vo
 		
-		return books.stream().map(entity -> convertToVo(entity)).collect(Collectors.toList());
+		return books.stream().map(entity -> helper.convertToVo(entity)).collect(Collectors.toList());
 		
 //		List<BookVo> voList = new ArrayList<>();
 //		for (BookEntity entity : books) {
@@ -38,21 +42,23 @@ public class BookService {
 		bookRepo.deleteById(id);
 	}
 	
-	
-	public BookVo convertToVo(BookEntity entity) {
-		BookVo vo = new BookVo();
-		vo.setId(entity.getId());
-		vo.setName(entity.getName());
-		vo.setAuthor(entity.getAuthor());
-		vo.setBuyDate(parseDateToString(entity.getBuyDate()));
-		vo.setImgName(entity.getImgName());
-		return vo;
+	public void insertBook(BookVo book) {
+		// 轉成 Entity
+		BookEntity entity = new BookEntity();
+		// 存進 DB
+		entity.setName(book.getName());
+		entity.setAuthor(book.getAuthor());
+		entity.setBuyDate(helper.parseDate(book.getBuyDate()));
+		entity.setImgName(book.getFile().getOriginalFilename());
+		bookRepo.save(entity);
+		
+		try {
+			helper.saveImage(book.getFile());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
-	
-	public String parseDateToString(Date date) {
-	    // 定義日期格式
-	   SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-	   // 將 Date 物件轉換為 String
-	   return formatter.format(date);
-	}
+
+
 }
