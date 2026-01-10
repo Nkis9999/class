@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,7 +19,8 @@ import com.course.model.BookVo;
 @Service
 public class BookServiceHelper {
 
-	private String uploadDirectory = "C:\\Users\\student\\images";
+	@Value("${upload.directory}")
+	private String uploadDirectory;
 	
 	public BookVo convertToVo(BookEntity entity) {
 		BookVo vo = new BookVo();
