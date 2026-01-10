@@ -23,7 +23,7 @@
 			<td th:text="${book.name}">書名</td>
 			<td th:text="${book.author}">作者</td>
 			<td>
-				<a href="">編輯</a>
+				<a th:href="@{/toEditPage/{id} (id=${book.id})}">編輯</a>
 				<a th:href="@{/delete/{id} (id=${book.id})}">刪除</a>
 			</td>
 		</tr>

@@ -1,10 +1,8 @@
 package com.course.service;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +58,10 @@ public class BookService {
 
 	}
 
-
+	public BookVo getBookById(Long id) {
+		// Optional<BookEntity> opt = bookRepo.findById(id);
+		BookEntity entity = bookRepo.findById(id).orElse(null);
+		return helper.convertToVo(entity);
+	}
+	
 }
