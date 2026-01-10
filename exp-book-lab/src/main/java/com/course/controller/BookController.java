@@ -61,4 +61,11 @@ public class BookController {
 		model.addAttribute("book", book);
 		return "editBook";
 	}
+	
+	@PostMapping("/update")
+	public String updateBook(@ModelAttribute("book") BookVo book) {
+		bookService.updateBook(book);
+		return "redirect:/toBookcase";
+	}
+	
 }

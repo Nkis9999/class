@@ -64,4 +64,28 @@ public class BookService {
 		return helper.convertToVo(entity);
 	}
 	
+	public void updateBook(BookVo book) {
+		BookEntity entity = bookRepo.findById(book.getId()).orElse(null);
+		if (!book.getName().isBlank()) {
+			entity.setName(book.getName());
+		}
+		
+		if (!book.getAuthor().isBlank()) {
+			entity.setAuthor(book.getAuthor());
+		}
+		
+		if (!book.getBuyDate().isBlank()) {
+			entity.setBuyDate(helper.parseDate(book.getBuyDate()));
+		}
+		
+		if (book.getFile() != null && !book.getFile().getOriginalFilename().isBlank()) {
+			entity.setImgName(book.getFile().getOriginalFilename());
+			try {
+				helper.saveImage(book.getFile());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		bookRepo.save(entity);
+	}
 }
