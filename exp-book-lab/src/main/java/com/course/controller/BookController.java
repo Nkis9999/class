@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.course.model.BookVo;
 import com.course.service.BookService;
@@ -66,6 +67,15 @@ public class BookController {
 	public String updateBook(@ModelAttribute("book") BookVo book) {
 		bookService.updateBook(book);
 		return "redirect:/toBookcase";
+	}
+	
+	@GetMapping("search")
+	public String searchKeyword(@RequestParam("keyword") String keyword, Model model) {
+		// 查詢
+		List<BookVo> books = bookService.getSearchBook(keyword);
+		model.addAttribute("books", books);
+		return "bookcase";
+		
 	}
 	
 }

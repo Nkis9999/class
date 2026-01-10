@@ -9,6 +9,11 @@
 
 <a th:href="@{/toAddBookPage}">新增書籍</a>
 
+<form th:action="@{/search}">
+	關鍵字:<input type="text" name="keyword"/>
+	<button type="submit">搜尋</button>
+</form>
+
 <table border="1">
 	<thead>
 		<tr>
