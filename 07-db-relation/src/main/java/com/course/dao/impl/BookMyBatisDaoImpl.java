@@ -2,18 +2,23 @@ package com.course.dao.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.course.dao.BookDao;
+import com.course.dao.mapper.BookMapper;
 import com.course.dto.BookDto;
 import com.course.dto.StoreDto;
 
 @Repository
 public class BookMyBatisDaoImpl implements BookDao {
 
+	@Autowired
+	private BookMapper bookMapper;
+	
 	@Override
 	public void insertBook(BookDto dto) {
-		// TODO Auto-generated method stub
+		bookMapper.insertBook(dto);
 		
 	}
 

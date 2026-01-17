@@ -15,7 +15,7 @@ import com.course.dto.StoreDto;
 public class BookService {
 
 	@Autowired
-	@Qualifier("bookJdbcDaoImpl")
+	@Qualifier("bookMyBatisDaoImpl")
 	private BookDao bookDao;
 	
 	@Transactional
