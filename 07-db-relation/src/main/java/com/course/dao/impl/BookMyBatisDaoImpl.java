@@ -2,12 +2,9 @@ package com.course.dao.impl;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import com.course.dao.BookDao;
 import com.course.dto.BookDto;
 
-@Repository
 public class BookMyBatisDaoImpl implements BookDao {
 
 	@Override
