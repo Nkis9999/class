@@ -47,4 +47,10 @@ public class BookMyBatisDaoImpl implements BookDao {
 		return null;
 	}
 
+	@Override
+	public List<BookDto> findInventoryByCode(String code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
