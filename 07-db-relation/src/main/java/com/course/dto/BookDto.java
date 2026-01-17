@@ -1,5 +1,19 @@
 package com.course.dto;
 
-public class BookDto {
+import java.util.Date;
 
+import lombok.Data;
+
+@Data
+public class BookDto {
+	
+	private Long id;
+	
+	private String name;
+	
+	private String author;
+	
+	private Date buyDate;
+	
+	private String imgName;
 }

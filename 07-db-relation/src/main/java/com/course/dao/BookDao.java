@@ -3,6 +3,7 @@ package com.course.dao;
 import java.util.List;
 
 import com.course.dto.BookDto;
+import com.course.dto.StoreDto;
 
 public interface BookDao {
 
@@ -17,4 +18,8 @@ public interface BookDao {
 	
 	// Delete
 	void deleteBookById(Long id);
+	
+	List<StoreDto> findAllStore();
+
+	List<StoreDto> findAllStoreWithData();
 }
