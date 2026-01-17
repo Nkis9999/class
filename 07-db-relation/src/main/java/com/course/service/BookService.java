@@ -25,4 +25,8 @@ public class BookService {
 		// return bookDao.findAllStore();
 		return bookDao.findAllStoreWithData();
 	}
+	
+	public List<BookDto> getInventoryByCode(String code) {
+		return bookDao.findInventoryByCode(code);
+	}
 }

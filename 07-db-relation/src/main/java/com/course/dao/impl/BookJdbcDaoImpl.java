@@ -79,5 +79,32 @@ public class BookJdbcDaoImpl implements BookDao {
 		};
 		return jdbcTemplate.query(sb.toString(), storeRowMapper);
 	}
+	
+	@Override
+	public List<BookDto> findInventoryByCode(String code) {
+		StringBuilder sb = new StringBuilder();
+	
+		sb.append(" SELECT ");
+		sb.append(" B.NAME B_NAME, ");
+		sb.append(" I.QUANTITY, ");
+		sb.append(" S.NAME S_NAME, ");
+		sb.append(" F.ADDRESS ");
+		sb.append(" FROM BOOK B ");
+		sb.append(" JOIN INVENTORY I ON I.BOOK_ID = B.ID ");
+		sb.append(" JOIN STORE S ON S.ID = I.STORE_ID ");
+		sb.append(" JOIN STORE_PROFILE F ON F.STORE_ID = S.ID ");
+		sb.append(" WHERE S.CODE = ? ");
+
+		RowMapper<BookDto> bookRowMapper = (rs, rowNum) -> {
+			BookDto dto = new BookDto();
+			dto.setName(rs.getString("B_NAME"));
+			dto.setQuantity(rs.getInt("QUANTITY"));
+			dto.setStoreName(rs.getString("S_NAME"));
+			dto.setAddress(rs.getString("ADDRESS"));
+			return dto;
+		};
+
+		return jdbcTemplate.query(sb.toString(), bookRowMapper, code);
+	}
 
 }

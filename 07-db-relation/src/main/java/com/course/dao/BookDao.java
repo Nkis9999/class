@@ -9,17 +9,19 @@ public interface BookDao {
 
 	// Create
 	void insertBook(BookDto dto);
-	
+
 	// Read
 	List<BookDto> findAll();
-	
+
 	// Update
 	void updateBook(BookDto dto);
-	
+
 	// Delete
 	void deleteBookById(Long id);
-	
+
 	List<StoreDto> findAllStore();
 
 	List<StoreDto> findAllStoreWithData();
+
+	List<BookDto> findInventoryByCode(String code);
 }

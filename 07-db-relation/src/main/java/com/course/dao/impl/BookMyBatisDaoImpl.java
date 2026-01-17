@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.course.dao.BookDao;
 import com.course.dto.BookDto;
+import com.course.dto.StoreDto;
 
 @Repository
 public class BookMyBatisDaoImpl implements BookDao {
@@ -32,6 +33,18 @@ public class BookMyBatisDaoImpl implements BookDao {
 	public void deleteBookById(Long id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<StoreDto> findAllStore() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<StoreDto> findAllStoreWithData() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
