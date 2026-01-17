@@ -26,9 +26,9 @@ import io.swagger.v3.oas.annotations.Operation;
 //@ResponseBody
 @RestController
 //@CrossOrigin("http://127.0.0.1:5500/")
-//@CrossOrigin("*")
+@CrossOrigin("*")
 //@CrossOrigin(value = {"http://127.0.0.1:5500", "http://localhost:3000"})
-@CrossOrigin(origins = { "http://127.0.0.1:5500" }, allowedHeaders = "*", allowCredentials = "true")
+//@CrossOrigin(origins = { "http://127.0.0.1:5500" }, allowedHeaders = "*", allowCredentials = "true")
 public class RestfulController {
 
 	@Operation(tags = {"測試TAG", "測試TAG2"}, summary= "你好", description="我是描述")
