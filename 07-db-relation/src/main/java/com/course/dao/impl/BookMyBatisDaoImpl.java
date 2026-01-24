@@ -21,36 +21,37 @@ public class BookMyBatisDaoImpl implements BookDao {
 	
 	@Override
 	public void insertBook(BookDto dto) {
-		bookMapper.insertBook(dto);
-		
+		// bookMapper.insertBook(dto);
+		bookMapper.insertBookByXml(dto);
 	}
 
 	@Override
 	public List<BookDto> findAll() {
-		// TODO Auto-generated method stub
-		return bookMapper.findAllBook();
+		// return bookMapper.findAllBook();
+		return bookMapper.findAllBook2();
 	}
 
 	@Override
 	public void updateBook(BookDto dto) {
-		bookMapper.updateBook(dto);
-		
+		// bookMapper.updateBook(dto);
+		bookMapper.updateBookByXml(dto);
 	}
 
 	@Override
 	public void deleteBookById(Long id) {
-		bookMapper.deleteById(id);
+		// bookMapper.deleteById(id);
+		bookMapper.deleteByIdByXml(id);
 	}
 
 	@Override
 	public List<StoreDto> findAllStore() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public List<StoreDto> findAllStoreWithData() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

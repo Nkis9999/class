@@ -34,4 +34,14 @@ public interface BookMapper {
 	
 	@Select("SELECT * FROM BOOK")
 	List<BookDto> findAllBook();
+	
+	List<BookDto> findAllBook2();
+	
+	Integer insertBookByXml(BookDto dto);
+	
+	Integer updateBookByXml(BookDto dto);
+	
+	Integer deleteByIdByXml(Long id);
+	
+	List<StoreDto> findStoreByXml(StoreDto dto);
 }

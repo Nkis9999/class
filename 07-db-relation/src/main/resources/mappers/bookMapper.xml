@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.course.dao.mapper.BookMapper">
+
+	<select id="findAllBook2" resultType="com.course.dto.BookDto">
+		SELECT * FROM BOOK
+	</select>
+	
+	<insert id="insertBookByXml" parameterType="bookDto">
+		INSERT INTO BOOK 
+		(NAME, AUTHOR, IMG_NAME, BUY_DATE) 
+		VALUES 
+		(#{name}, #{author}, #{imgName}, #{buyDate})
+	</insert>
+	
+	<update id="updateBookByXml" parameterType="bookDto">
+		UPDATE BOOK
+	    <set>
+	        <if test="name != null and name != '' ">NAME = #{name},</if>
+	        <if test="author != null and author != '' ">AUTHOR = #{author},</if>
+	    </set>
+		WHERE ID = #{id}
+	</update>
+	
+	<delete id="deleteByIdByXml" parameterType="long">
+		DELETE FROM BOOK WHERE ID = #{id}
+	</delete>
+	
+	<select id="findStoreByXml" parameterType="StoreDto">
+		SELECT
+		S.CODE,
+		S.NAME,
+		P.ADDRESS
+		FROM store s 
+		left join store_profile p on p.store_id = s.id
+	</select>
+	
+</mapper>
