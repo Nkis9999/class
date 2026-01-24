@@ -107,4 +107,10 @@ public class BookJdbcDaoImpl implements BookDao {
 		return jdbcTemplate.query(sb.toString(), bookRowMapper, code);
 	}
 
+	@Override
+	public void insertStore(StoreDto dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.course.dao;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import com.course.dto.BookDto;
@@ -24,4 +25,6 @@ public interface BookDao {
 	List<StoreDto> findAllStoreWithData();
 
 	List<BookDto> findInventoryByCode(String code);
+	
+	void insertStore(StoreDto dto) throws FileNotFoundException;
 }

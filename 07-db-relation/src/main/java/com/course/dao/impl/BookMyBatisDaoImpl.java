@@ -1,9 +1,12 @@
 package com.course.dao.impl;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.course.dao.BookDao;
 import com.course.dao.mapper.BookMapper;
@@ -25,19 +28,18 @@ public class BookMyBatisDaoImpl implements BookDao {
 	@Override
 	public List<BookDto> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return bookMapper.findAllBook();
 	}
 
 	@Override
 	public void updateBook(BookDto dto) {
-		// TODO Auto-generated method stub
+		bookMapper.updateBook(dto);
 		
 	}
 
 	@Override
 	public void deleteBookById(Long id) {
-		// TODO Auto-generated method stub
-		
+		bookMapper.deleteById(id);
 	}
 
 	@Override
@@ -56,6 +58,20 @@ public class BookMyBatisDaoImpl implements BookDao {
 	public List<BookDto> findInventoryByCode(String code) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	// @Transactional
+	@Transactional(rollbackFor = {Exception.class})
+	public void insertStore(StoreDto dto) throws FileNotFoundException {
+		bookMapper.insertStore(dto);
+		
+		// 強制設計一個 Exception
+		// Integer.parseInt("ABC");
+		
+		FileInputStream fis = new FileInputStream("aaaa.txt");
+		bookMapper.insertStoreProfile(dto);
+		
 	}
 
 }

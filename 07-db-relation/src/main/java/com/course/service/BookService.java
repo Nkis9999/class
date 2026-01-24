@@ -1,5 +1,6 @@
 package com.course.service;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.course.dto.StoreDto;
 public class BookService {
 
 	@Autowired
+	// @Qualifier("bookJdbcDaoImpl")
 	@Qualifier("bookMyBatisDaoImpl")
 	private BookDao bookDao;
 	
@@ -35,5 +37,26 @@ public class BookService {
 	
 	public List<BookDto> getInventoryByCode(String code) {
 		return bookDao.findInventoryByCode(code);
+	}
+	
+	public void updateBook(BookDto dto) {
+		bookDao.updateBook(dto);
+		
+	}
+
+	public void deleteBookById(Long id) {
+		bookDao.deleteBookById(id);
+	}
+	
+	public void insertStore(StoreDto dto) {
+		try {
+			bookDao.insertStore(dto);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public List<BookDto> findAllBook() {
+		return bookDao.findAll();
 	}
 }
