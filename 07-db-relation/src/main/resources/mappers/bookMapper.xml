@@ -7,7 +7,8 @@
 		SELECT * FROM BOOK
 	</select>
 	
-	<insert id="insertBookByXml" parameterType="bookDto">
+	<insert id="insertBookByXml" parameterType="bookDto"
+		useGeneratedKeys = "true" keyProperty = "id">
 		INSERT INTO BOOK 
 		(NAME, AUTHOR, IMG_NAME, BUY_DATE) 
 		VALUES 
@@ -32,8 +33,61 @@
 		S.CODE,
 		S.NAME,
 		P.ADDRESS
-		FROM store s 
-		left join store_profile p on p.store_id = s.id
+		FROM STORE S 
+		LEFT JOIN STORE_PROFILE P ON P.STORE_ID = S.ID
+		<where>
+			<if test="code != null and code != '' ">AND S.CODE = #{code}</if>
+			<if test="name != null and name != '' ">OR S.NAME LIKE CONCAT('%', #{name}, '%')</if>
+		</where>
+
+	</select>
+	
+	
+	<resultMap type="bookDto" id="bookMap">
+	    <id property="id" column="ID"/>
+	    <result property="name" column="NAME"/>
+	    <result property="author" column="AUTHOR"/>
+	    <result property="buyDate" column="BUY_DATE"/>
+	    <collection property="categories" ofType="string">
+	        <result column="CATEGORY"/>
+	    </collection>
+	</resultMap>
+
+	<select id="findBookWithCategory" resultMap="bookMap">
+		SELECT
+	    B.ID,
+	    B.NAME,
+	    B.AUTHOR,
+	    B.BUY_DATE,
+	    C.CATEGORY
+		FROM BOOK B 
+		LEFT JOIN BOOK_CATEGORY C ON C.BOOK_ID = B.ID
+	</select>
+	
+	<resultMap type="BookDto" id="bookMap2">
+	    <id property="id" column="ID"/>
+	    <result property="name" column="NAME"/>
+	    <result property="author" column="IMG_NAME"/>
+	    <result property="buyDate" column="BUY_DATE"/>
+	    <collection property="stores" ofType="StoreDto">
+	        <id property="id" column="STOREID" />
+	        <result property="code" column="STORECODE" />
+	        <result property="name" column="STORENAME" />
+	    </collection>
+	</resultMap>
+
+	<select id="findAllInvetory" resultMap="bookMap2">
+	    SELECT 
+	    B.ID,
+	    B.NAME,
+	    B.BUY_DATE,
+	    B.IMG_NAME,
+	    S.ID STOREID,
+	    S.CODE STORECODE,
+	    S.NAME STORENAME
+	    FROM BOOK B
+	    JOIN INVENTORY I ON I.BOOK_ID = B.ID
+	    JOIN STORE S ON S.ID = I.STORE_ID
 	</select>
 	
 </mapper>

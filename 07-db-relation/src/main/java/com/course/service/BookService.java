@@ -1,6 +1,7 @@
 package com.course.service;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +59,27 @@ public class BookService {
 	
 	public List<BookDto> findAllBook() {
 		return bookDao.findAll();
+	}
+	
+	public List<StoreDto> findStoreByCondition(StoreDto dto) {
+		return bookDao.findStoreByCondition(dto);
+	}
+	
+	public List<BookDto> findBookWithCategory() {
+		return bookDao.findBookWithCategory();
+	}
+	
+	public List<BookDto> findBookWithCategoryTest() {
+		// 查詢所有書籍(不含分類)
+		List<BookDto> result = new ArrayList<>();
+		List<BookDto> books = bookDao.findAll();
+		for (BookDto book : books) {
+			// 取得書籍分類
+			List<String> categories = null; // = bookDao.findCategoryByBookId(book.getId());
+			book.setCategories(categories);
+			result.add(book);
+		}
+		
+		return result;
 	}
 }

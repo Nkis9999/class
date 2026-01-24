@@ -44,4 +44,8 @@ public interface BookMapper {
 	Integer deleteByIdByXml(Long id);
 	
 	List<StoreDto> findStoreByXml(StoreDto dto);
+	
+	List<BookDto> findBookWithCategory();
+	
+	List<BookDto> findAllInvetory();
 }

@@ -27,4 +27,8 @@ public interface BookDao {
 	List<BookDto> findInventoryByCode(String code);
 	
 	void insertStore(StoreDto dto) throws FileNotFoundException;
+	
+	List<StoreDto> findStoreByCondition(StoreDto dto);
+	
+	List<BookDto> findBookWithCategory();
 }

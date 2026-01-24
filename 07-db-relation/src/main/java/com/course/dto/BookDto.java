@@ -1,6 +1,7 @@
 package com.course.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -22,5 +23,11 @@ public class BookDto {
 	private Integer quantity;
 	
 	private String address;
+	
+	private String category;
+	
+	private List<String> categories;
+	
+	private List<StoreDto> stores;
 	
 }
