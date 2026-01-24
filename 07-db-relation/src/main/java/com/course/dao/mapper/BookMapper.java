@@ -48,4 +48,6 @@ public interface BookMapper {
 	List<BookDto> findBookWithCategory();
 	
 	List<BookDto> findAllInvetory();
+	
+	List<StoreDto> findStoresInCode(StoreDto dto);
 }

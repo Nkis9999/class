@@ -125,4 +125,10 @@ public class BookJdbcDaoImpl implements BookDao {
 		return null;
 	}
 
+	@Override
+	public List<StoreDto> findStoresInCode(StoreDto dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

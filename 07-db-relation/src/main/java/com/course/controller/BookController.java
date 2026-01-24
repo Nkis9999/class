@@ -72,4 +72,9 @@ public class BookController {
 	public List<BookDto> findBookWithCategory() {
 		return bookService.findBookWithCategory();
 	}
+	
+	@PostMapping("/stores-codes")
+	public List<StoreDto> findStoresInCode(@RequestBody StoreDto dto) {
+		return bookService.findStoresInCode(dto);
+	}
 }

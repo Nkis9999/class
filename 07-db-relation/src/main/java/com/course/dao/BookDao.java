@@ -31,4 +31,7 @@ public interface BookDao {
 	List<StoreDto> findStoreByCondition(StoreDto dto);
 	
 	List<BookDto> findBookWithCategory();
+	
+	List<StoreDto> findStoresInCode(StoreDto dto);
+	
 }

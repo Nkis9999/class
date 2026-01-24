@@ -76,7 +76,7 @@
 	    </collection>
 	</resultMap>
 
-	<select id="findAllInvetory" resultMap="bookMap2">
+	<select id="findInvetoryByCode" parameterType="string" resultMap="bookMap2">
 	    SELECT 
 	    B.ID,
 	    B.NAME,
@@ -88,6 +88,21 @@
 	    FROM BOOK B
 	    JOIN INVENTORY I ON I.BOOK_ID = B.ID
 	    JOIN STORE S ON S.ID = I.STORE_ID
+	    WHERE S.CODE = #{code}
+	</select>
+	
+	<select id="findStoresInCode" parameterType="storeDto" resultType="storeDto">
+		SELECT
+		S.CODE,
+		S.NAME,
+		P.ADDRESS
+		FROM STORE S 
+		LEFT JOIN STORE_PROFILE P ON P.STORE_ID = S.ID
+		<where>
+	        <foreach collection="codes" item="code" open="S.CODE IN (" separator="," close=")" >
+	            #{code}
+	        </foreach>
+		</where>
 	</select>
 	
 </mapper>

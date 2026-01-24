@@ -82,4 +82,8 @@ public class BookService {
 		
 		return result;
 	}
+	
+	public List<StoreDto> findStoresInCode(StoreDto dto) {
+		return bookDao.findStoresInCode(dto);
+	}
 }

@@ -82,7 +82,13 @@ public class BookMyBatisDaoImpl implements BookDao {
 
 	@Override
 	public List<BookDto> findBookWithCategory() {
+
 		return bookMapper.findBookWithCategory();
+	}
+
+	@Override
+	public List<StoreDto> findStoresInCode(StoreDto dto) {
+		return bookMapper.findStoresInCode(dto);
 	}
 	
 	
