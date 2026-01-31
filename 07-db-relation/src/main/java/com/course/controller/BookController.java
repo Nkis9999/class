@@ -1,5 +1,7 @@
 package com.course.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.course.dto.BookDto;
 import com.course.dto.StoreDto;
+import com.course.exception.ActionException;
 import com.course.service.BookService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 
 @RestController
 public class BookController {
@@ -52,13 +56,14 @@ public class BookController {
 	
 	@Operation(summary = "新增門市", description = "新增門市")
 	@PostMapping("/store")
-	public void insertStore(@RequestBody StoreDto dto) {
+	public void insertStore(@RequestBody @Valid StoreDto dto) {
 		bookService.insertStore(dto);
 	}
 	
 	@Operation(summary = "查詢所有書籍", description = "查詢所有書籍")
 	@GetMapping("/books")
 	public List<BookDto> getAllBook() {
+		Integer.parseInt("ABC");
 		return bookService.findAllBook();
 	}
 	
@@ -76,5 +81,17 @@ public class BookController {
 	@PostMapping("/stores-codes")
 	public List<StoreDto> findStoresInCode(@RequestBody StoreDto dto) {
 		return bookService.findStoresInCode(dto);
+	}
+	
+	@Operation(summary = "拋出錯誤", tags = "錯誤")
+	@GetMapping("/exception")
+	public void throwException() throws ActionException {
+
+		try {
+			FileInputStream fis = new FileInputStream("abc.jpg");
+		} catch (FileNotFoundException e) {
+			throw new ActionException("506", "檔案不存在", e);
+		}
+
 	}
 }
