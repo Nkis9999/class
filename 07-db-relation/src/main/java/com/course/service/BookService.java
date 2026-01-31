@@ -20,35 +20,35 @@ public class BookService {
 	// @Qualifier("bookJdbcDaoImpl")
 	@Qualifier("bookMyBatisDaoImpl")
 	private BookDao bookDao;
-	
+
 	@Transactional
 	public void addBook(BookDto dto) {
-		
+
 		// 複雜邏輯
 		// ...
 		bookDao.insertBook(dto);
-		
+
 		// 複雜邏輯....
 	}
-	
+
 	public List<StoreDto> getStores() {
 		// return bookDao.findAllStore();
 		return bookDao.findAllStoreWithData();
 	}
-	
+
 	public List<BookDto> getInventoryByCode(String code) {
 		return bookDao.findInventoryByCode(code);
 	}
-	
+
 	public void updateBook(BookDto dto) {
 		bookDao.updateBook(dto);
-		
+
 	}
 
 	public void deleteBookById(Long id) {
 		bookDao.deleteBookById(id);
 	}
-	
+
 	public void insertStore(StoreDto dto) {
 		try {
 			bookDao.insertStore(dto);
@@ -56,19 +56,20 @@ public class BookService {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public List<BookDto> findAllBook() {
+//		Integer.parseInt("ABC");
 		return bookDao.findAll();
 	}
-	
+
 	public List<StoreDto> findStoreByCondition(StoreDto dto) {
 		return bookDao.findStoreByCondition(dto);
 	}
-	
+
 	public List<BookDto> findBookWithCategory() {
 		return bookDao.findBookWithCategory();
 	}
-	
+
 	public List<BookDto> findBookWithCategoryTest() {
 		// 查詢所有書籍(不含分類)
 		List<BookDto> result = new ArrayList<>();
@@ -79,10 +80,10 @@ public class BookService {
 			book.setCategories(categories);
 			result.add(book);
 		}
-		
+
 		return result;
 	}
-	
+
 	public List<StoreDto> findStoresInCode(StoreDto dto) {
 		return bookDao.findStoresInCode(dto);
 	}
